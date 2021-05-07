@@ -1,0 +1,95 @@
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  /* resets margin & padding settings for all elements to 0 to remove any browser inherited settings */
+  box-sizing: border-box;
+  /* total width / height of an element = content + padding + border */
+}
+
+body {
+  background-color: #f6dfeb;
+  color: #fff;
+  font-family: 'IM Fell DW Pica', serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*  alignment on the main axis
+      main axis changes depending on the flex-direction property (for column flex-direction, main axis is vertical)
+  */
+  align-items: center;
+  /*  alignment on the cross axis
+      cross axis changes depending on the flex-direction property (for column flex-direction, cross axis is horizontal)
+  */
+  min-height: 100vh;
+  /* 100% of the available height meaning 100% of the current laptop / mobile browser height*/
+}
+
+
+/* HEADER */
+
+header {
+  margin: 20px 0;
+  /* text-transform: uppercase; */
+  font-size: 22px;
+}
+
+@media only screen and (min-width: 768px) {
+  header {
+    font-size: 28px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  header {
+    font-size: 32px;
+  }
+}
+
+
+/* MAIN SECTION */
+
+main {
+  background-color: #fff;
+  width: 380px;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  background-color: #caf7e3;
+  margin: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  main {
+    width: 500px;
+    height: 380px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  main {
+    width: 580px;
+    height: 440px;
+  }
+  .card {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+
+/* FOOTER */
+
+footer {
+  margin: 20px 0;
+  font-size: 20px;
+}

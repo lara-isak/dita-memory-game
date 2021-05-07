@@ -9,4 +9,4 @@ Tech stack:
 - CSS
 - JavaScript
 
-Happy 4th Birthday, Dita!!! Stay cool, stay curious, stay you!!! 😎💕
+Happy 4th Birthday, Dita! Stay cool, stay curious, stay you! 😎💕

@@ -3,7 +3,6 @@
   - assign each image to one of the squares
   - click on the first square
   - clicked square gets saved to selectedOne variable
-  - div image changes to one of the images from the library
   - click on the second square
   - clicked square gets saved to the selectedTwo variable
   - div image changes to one of the images from the library
@@ -13,6 +12,7 @@
   - on game restart images are randomly assigned to each of the squares 
 */
 
+// create library of images
 var images = [
   'https://github.com/lara-isak/dita-memory-game/blob/main/img/dita_120x120.jpg?raw=true',
   'https://github.com/lara-isak/dita-memory-game/blob/main/img/elsa1_120x120.jpg?raw=true',
@@ -29,8 +29,9 @@ var images = [
 ];
 
 var card = document.querySelectorAll(".card");
+var cardsFrame = document.querySelector("main");
 
-
+// assigning images to the squares
 function addImages() {
   // loop through the divs which represent cards
   for(var i = 0; i < card.length; i++) {
@@ -47,7 +48,7 @@ function addImages() {
       - if we just need to insert new element(s) without eplacing the existing ones, we can use 
       .insertAdjacentHTML() method
      */
-    card[i].innerHTML = "<img src='" + images[rand] + "' alt='img'>";
+    card[i].innerHTML = "<img src='" + images[rand] + "' alt='img' class='hidden'>";
 
     // after an image has been added to the card div, we're removing that image from the images field so we don't have images repeating more than 2 times
     images.splice(rand, 1);
@@ -57,8 +58,14 @@ function addImages() {
 addImages();
 
 
+// reveal image on square click
+function imgReveal() {
+  cardsFrame.addEventListener('click', e => {
+    e.target.firstChild.classList.remove('hidden');
+  });
+}
 
-// card.addEventListener('click', e => {
+imgReveal();
 
-// });
+
 

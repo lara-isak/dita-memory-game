@@ -2,9 +2,9 @@
   - create library of images
   - assign each image to one of the squares
   - click on the first square
-  - clicked square gets saved to selectedOne variable
+  - clicked square gets saved to firstCard variable
   - click on the second square
-  - clicked square gets saved to the selectedTwo variable
+  - clicked square gets saved to the secondCard variable
   - div image changes to one of the images from the library
   - if both images are the same, keep them visible
   - else change the background back to the default one
@@ -30,6 +30,11 @@ var images = [
 
 var card = document.querySelectorAll(".card");
 var cardsFrame = document.querySelector("main");
+var firstCard;
+var secondCard;
+var clickCount = 0;
+var match = 0;
+
 
 // assigning images to the squares
 function addImages() {
@@ -57,15 +62,46 @@ function addImages() {
 
 addImages();
 
+cardsFrame.addEventListener("click", gameLogic);
 
-// reveal image on square click
-function imgReveal() {
-  cardsFrame.addEventListener('click', e => {
+
+function gameLogic(e) {
+  // targets only cards and not the main div itself
+  if(e.target.classList.contains("card")) {
     e.target.firstChild.classList.remove('hidden');
-  });
-}
 
-imgReveal();
+    if(clickCount === 0) {
+      firstCard = e.target;
+      clickCount++;
+    }
+
+    else {
+      secondCard = e.target;
+      clickCount--;
+
+      if(firstCard.firstChild.src !== secondCard.firstChild.src) {
+        // unable to click cards while the setTimeout() function is being executed
+        cardsFrame.removeEventListener("click", gameLogic);
+        // we need setTimeout() function here because otherwise the below lines of code are executing so fast that I'm not able to even see the image for the second card
+        setTimeout( () => {
+          firstCard.firstChild.classList.add("hidden");
+          secondCard.firstChild.classList.add("hidden");
+          cardsFrame.addEventListener("click", gameLogic);  
+        }, 800);      
+      }
+
+      else {
+        // if our images match, update the match count
+        match++;
+      }
+
+      if(match === 6) {
+        // game is done when all 6 images are matched
+         console.log("You won!"); 
+      }
+    }
+  }
+}
 
 
 

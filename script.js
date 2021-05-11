@@ -93,13 +93,24 @@ function gameLogic(e) {
       else {
         // if our images match, update the match count
         match++;
+        // sets opacity of matching cards back to 1
+        firstCard.style.opacity = "1";
+        secondCard.style.opacity = "1";
+
+        if(firstCard.firstChild.src.includes("taylor")) {
+          // create audio element, set its attributes, add it as a lastChild to the main div and play the audio depending on keyword included in the img src
+          var audio = document.createElement('audio');
+          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/taylor_sample.mp3?raw=true");
+          audio.setAttribute("autoplay", "true");
+          firstCard.insertAdjacentElement("beforeend", audio);
+        }
       }
 
       if(match === 6) {
         // game is done when all 6 images are matched
          console.log("You won!"); 
       }
-    }
+    }    
   }
 }
 

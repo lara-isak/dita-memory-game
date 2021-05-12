@@ -34,6 +34,7 @@ var firstCard;
 var secondCard;
 var clickCount = 0;
 var match = 0;
+var audio;
 
 
 // assigning images to the squares
@@ -96,14 +97,33 @@ function gameLogic(e) {
         // sets opacity of matching cards back to 1
         firstCard.style.opacity = "1";
         secondCard.style.opacity = "1";
+        
+        // create audio element, set its attributes, add it as a lastChild to the main div
+        audio = document.createElement('audio');
+        audio.setAttribute("autoplay", "true");
+        firstCard.insertAdjacentElement("beforeend", audio);
+        console.log(firstCard);
 
+        // play an audio sample depending on the keyword included in the img src
         if(firstCard.firstChild.src.includes("taylor")) {
-          // create audio element, set its attributes, add it as a lastChild to the main div and play the audio depending on keyword included in the img src
-          var audio = document.createElement('audio');
-          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/taylor_sample.mp3?raw=true");
-          audio.setAttribute("autoplay", "true");
-          firstCard.insertAdjacentElement("beforeend", audio);
+          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/me_sample.mp3?raw=true");
         }
+        else if(firstCard.firstChild.src.includes("rihanna")) {
+          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/diamonds_sample.mp3?raw=true");
+        }
+        else if(firstCard.firstChild.src.includes("olaf")) {
+          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/olaf_sample.mp3?raw=true");
+
+        }
+        else if(firstCard.firstChild.src.includes("elsa")) {
+          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/let_it_go_sample.mp3?raw=true");
+        }
+        else if(firstCard.firstChild.src.includes("torta")) {
+          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/happy_bday_sample.mp3?raw=true");
+        } 
+        else {
+          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/rearviewmirror_intro_sample.mp3?raw=true");
+        }       
       }
 
       if(match === 6) {

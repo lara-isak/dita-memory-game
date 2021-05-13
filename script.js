@@ -30,12 +30,12 @@ var images = [
 
 var card = document.querySelectorAll(".card");
 var cardsFrame = document.querySelector("main");
+var gameOverLay = document.querySelector(".gameOverlay");
 var firstCard;
 var secondCard;
 var clickCount = 0;
 var match = 0;
 var audio;
-
 
 // assigning images to the squares
 function addImages() {
@@ -62,6 +62,7 @@ function addImages() {
 }
 
 addImages();
+
 
 cardsFrame.addEventListener("click", gameLogic);
 
@@ -105,6 +106,9 @@ function gameLogic(e) {
         console.log(firstCard);
 
         // play an audio sample depending on the keyword included in the img src
+
+        // !check how the audio can be cut short and switch when additional cards get matched
+
         if(firstCard.firstChild.src.includes("taylor")) {
           audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/me_sample.mp3?raw=true");
         }
@@ -128,11 +132,26 @@ function gameLogic(e) {
 
       if(match === 6) {
         // game is done when all 6 images are matched
-         console.log("You won!"); 
+         console.log("You won!");
+         gameOverLay.style.display = "block";
       }
     }    
   }
 }
 
+gameOverLay.firstElementChild.lastElementChild.addEventListener("click", playAgain);
+
+function playAgain() {
+  gameOverLay.style.display = "none";
+  firstCard = "";
+  secondCard = "";
+  console.log(firstCard);
+  console.log(secondCard);
+  for(var i = 0; i < card.length; i++) {
+    console.log(card[i]);
+    card[i].firstChild.classList.add("hidden");
+    console.log(card[i]);
+  }
+}
 
 

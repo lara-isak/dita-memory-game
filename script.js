@@ -13,7 +13,7 @@
 */
 
 // create library of images
-var images = [
+var library = [
   'https://github.com/lara-isak/dita-memory-game/blob/main/img/dita_120x120.jpg?raw=true',
   'https://github.com/lara-isak/dita-memory-game/blob/main/img/elsa1_120x120.jpg?raw=true',
   'https://github.com/lara-isak/dita-memory-game/blob/main/img/olaf1_120x120.jpg?raw=true',
@@ -31,16 +31,34 @@ var images = [
 var card = document.querySelectorAll(".card");
 var cardsFrame = document.querySelector("main");
 var gameOverLay = document.querySelector(".gameOverlay");
+var playAgainButton = gameOverLay.firstElementChild.lastElementChild;
 var firstCard;
 var secondCard;
 var clickCount = 0;
 var match = 0;
 var audio;
+var images = [];
+
+function playAgain() {
+  gameOverLay.style.display = "none";
+  firstCard = "";
+  secondCard = "";
+  clickCount = 0;
+  match = 0;
+  addImages();
+}
+
+
+
+playAgainButton.addEventListener("click", () => {
+  playAgain();
+});
 
 // assigning images to the squares
 function addImages() {
   // loop through the divs which represent cards
   for(var i = 0; i < card.length; i++) {
+    images.push(library[i]);
     
     // create a random number between 0 - 11
     var rand = Math.floor(Math.random() * (images.length-1));
@@ -103,7 +121,6 @@ function gameLogic(e) {
         audio = document.createElement('audio');
         audio.setAttribute("autoplay", "true");
         firstCard.insertAdjacentElement("beforeend", audio);
-        console.log(firstCard);
 
         // play an audio sample depending on the keyword included in the img src
 
@@ -130,28 +147,18 @@ function gameLogic(e) {
         }       
       }
 
-      if(match === 6) {
+      if(match === 1) {
         // game is done when all 6 images are matched
          console.log("You won!");
          gameOverLay.style.display = "block";
+         console.log(firstCard);
+         console.log(secondCard);
       }
     }    
   }
 }
 
-gameOverLay.firstElementChild.lastElementChild.addEventListener("click", playAgain);
 
-function playAgain() {
-  gameOverLay.style.display = "none";
-  firstCard = "";
-  secondCard = "";
-  console.log(firstCard);
-  console.log(secondCard);
-  for(var i = 0; i < card.length; i++) {
-    console.log(card[i]);
-    card[i].firstChild.classList.add("hidden");
-    console.log(card[i]);
-  }
-}
+
 
 

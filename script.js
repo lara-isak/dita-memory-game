@@ -13,7 +13,7 @@
 */
 
 // create library of images
-var library = [
+var imageLibrary = [
   'https://github.com/lara-isak/dita-memory-game/blob/main/img/dita_120x120.jpg?raw=true',
   'https://github.com/lara-isak/dita-memory-game/blob/main/img/elsa1_120x120.jpg?raw=true',
   'https://github.com/lara-isak/dita-memory-game/blob/main/img/olaf1_120x120.jpg?raw=true',
@@ -32,34 +32,22 @@ var card = document.querySelectorAll(".card");
 var cardsFrame = document.querySelector("main");
 var gameOverLay = document.querySelector(".gameOverlay");
 var playAgainButton = gameOverLay.firstElementChild.lastElementChild;
+var images = [];
 var firstCard;
 var secondCard;
 var clickCount = 0;
 var match = 0;
 var audio;
-var images = [];
 
-function playAgain() {
-  gameOverLay.style.display = "none";
-  firstCard = "";
-  secondCard = "";
-  clickCount = 0;
-  match = 0;
-  addImages();
-}
-
-
-
-playAgainButton.addEventListener("click", () => {
-  playAgain();
-});
 
 // assigning images to the squares
 function addImages() {
+  for(var i = 0; i < card.length; i++) {
+    images.push(imageLibrary[i]);
+  }
+
   // loop through the divs which represent cards
   for(var i = 0; i < card.length; i++) {
-    images.push(library[i]);
-    
     // create a random number between 0 - 11
     var rand = Math.floor(Math.random() * (images.length-1));
 
@@ -147,18 +135,29 @@ function gameLogic(e) {
         }       
       }
 
-      if(match === 1) {
+      if(match === 6) {
         // game is done when all 6 images are matched
-         console.log("You won!");
          gameOverLay.style.display = "block";
-         console.log(firstCard);
-         console.log(secondCard);
       }
     }    
   }
 }
 
+function playAgain() {
+  gameOverLay.style.display = "none";
+  firstCard = "";
+  secondCard = "";
+  clickCount = 0;
+  match = 0;
+  addImages();
+  for(var i = 0; i < card.length; i++) {
+    card[i].removeAttribute("style");
+  }
+}
 
+playAgainButton.addEventListener("click", () => {
+  playAgain();
+});
 
 
 

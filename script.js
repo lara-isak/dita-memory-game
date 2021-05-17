@@ -106,32 +106,48 @@ function gameLogic(e) {
         secondCard.style.opacity = "1";
         
         // create audio element, set its attributes, add it as a lastChild to the main div
-        audio = document.createElement('audio');
-        audio.setAttribute("autoplay", "true");
-        firstCard.insertAdjacentElement("beforeend", audio);
+        audioEle = document.createElement('audio');
+        audioEle.setAttribute("autoplay", "true");
+        firstCard.insertAdjacentElement("beforeend", audioEle);
+
+        // pause audio if another match is made before the current audio is finished
+        function pauseAudio() {
+            card.forEach(function(card) {
+            var currentAudio = firstCard.lastChild;
+            var otherAudios = card.querySelector("audio");
+            if(currentAudio !== otherAudios) {
+              if(otherAudios) {
+                otherAudios.pause();
+              }
+            }
+          });
+        }
 
         // play an audio sample depending on the keyword included in the img src
-
-        // !check how the audio can be cut short and switch when additional cards get matched
-
         if(firstCard.firstChild.src.includes("taylor")) {
-          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/me_sample.mp3?raw=true");
+          audioEle.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/me_sample.mp3?raw=true");
+          pauseAudio();
         }
         else if(firstCard.firstChild.src.includes("rihanna")) {
-          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/diamonds_sample.mp3?raw=true");
+          audioEle.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/diamonds_sample.mp3?raw=true");
+          pauseAudio();
         }
         else if(firstCard.firstChild.src.includes("olaf")) {
-          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/olaf_sample.mp3?raw=true");
+          audioEle.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/olaf_sample.mp3?raw=true");
+          pauseAudio();
 
         }
         else if(firstCard.firstChild.src.includes("elsa")) {
-          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/let_it_go_sample.mp3?raw=true");
+          audioEle.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/let_it_go_sample.mp3?raw=true");
+          pauseAudio();
         }
         else if(firstCard.firstChild.src.includes("torta")) {
-          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/happy_bday_sample.mp3?raw=true");
+          audioEle.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/happy_bday_sample.mp3?raw=true");
+          pauseAudio();
         } 
         else {
-          audio.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/rearviewmirror_intro_sample.mp3?raw=true");
+          audioEle.setAttribute("src", "https://github.com/lara-isak/dita-memory-game/blob/main/audio/rearviewmirror_intro_sample.mp3?raw=true");
+          pauseAudio();
         }       
       }
 

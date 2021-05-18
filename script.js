@@ -110,7 +110,7 @@ function gameLogic(e) {
         audioEle.setAttribute("autoplay", "true");
         firstCard.insertAdjacentElement("beforeend", audioEle);
 
-        // pause audio if another match is made before the current audio is finished
+        // pause other audios if another match is made before the current audio is finished
         function pauseAudio() {
             card.forEach(function(card) {
             var currentAudio = firstCard.lastChild;
@@ -151,9 +151,10 @@ function gameLogic(e) {
         }       
       }
 
-      if(match === 6) {
+      if(match === 1) {
         // game is done when all 6 images are matched
          gameOverLay.style.display = "block";
+         confetti();
       }
     }    
   }

@@ -39,7 +39,6 @@ var clickCount = 0;
 var match = 0;
 var audio;
 
-
 // assigning images to the squares
 function addImages() {
   for(var i = 0; i < card.length; i++) {
@@ -154,7 +153,11 @@ function gameLogic(e) {
       if(match === 1) {
         // game is done when all 6 images are matched
          gameOverLay.style.display = "block";
-         confetti();
+         confetti({
+          particleCount: 100,
+          spread: 70,
+          colors: ['#da9ff9', '#b088f9', '#98acf8', '#bedcfa']
+        });
       }
     }    
   }

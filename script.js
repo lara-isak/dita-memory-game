@@ -150,7 +150,7 @@ function gameLogic(e) {
         }       
       }
 
-      if(match === 1) {
+      if(match === 6) {
         // game is done when all 6 images are matched
          gameOverLay.style.display = "block";
          confetti({

@@ -4,7 +4,7 @@ Pink Pairs is a memory card game created with **HTML, CSS & JavaScript** as a bi
 
 The game design is inspired by Dita's favorite color (**pink**), favorite cartoon (**Frozen**) and 2 of her favorite musicians (**Taylor and RiRi**).
 
-You can find and play the game [here](https://lara-isak.github.io/dita-memory-game/).
+You can find and play the game [here](https://lara-isak.github.io/pink-pairs/).
 
 ![](img/pink-pairs.png)
 

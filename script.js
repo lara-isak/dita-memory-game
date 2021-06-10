@@ -44,7 +44,6 @@ function addImages() {
   for(var i = 0; i < card.length; i++) {
     images.push(imageLibrary[i]);
   }
-
   // loop through the divs which represent cards
   for(var i = 0; i < card.length; i++) {
     // create a random number between 0 - 11
@@ -68,15 +67,15 @@ function addImages() {
 
 addImages();
 
-
+// gameLogic in this case is only a reference to the function (function name without the parentheses) because we don't to call the gameLogic function at this point (line 71), we want to call it when we click on the "main" element
 cardsFrame.addEventListener("click", gameLogic);
 
 
 function gameLogic(e) {
+  // target property returns the element that triggered the event (click event in this case)
   // targets only cards and not the main div itself
   if(e.target.classList.contains("card")) {
     e.target.firstChild.classList.remove('hidden');
-
     if(clickCount === 0) {
       firstCard = e.target;
       clickCount++;
@@ -89,7 +88,7 @@ function gameLogic(e) {
       if(firstCard.firstChild.src !== secondCard.firstChild.src) {
         // unable to click cards while the setTimeout() function is being executed
         cardsFrame.removeEventListener("click", gameLogic);
-        // we need setTimeout() function here because otherwise the below lines of code are executing so fast that I'm not able to even see the image for the second card
+        // we need setTimeout() function here because otherwise the below lines of code are executing so fast that we're not able to even see the image for the second card
         setTimeout( () => {
           firstCard.firstChild.classList.add("hidden");
           secondCard.firstChild.classList.add("hidden");
@@ -105,16 +104,21 @@ function gameLogic(e) {
         secondCard.style.opacity = "1";
         
         // create audio element, set its attributes, add it as a lastChild to the main div
-        audioEle = document.createElement('audio');
+        var audioEle = document.createElement('audio');
         audioEle.setAttribute("autoplay", "true");
         firstCard.insertAdjacentElement("beforeend", audioEle);
 
         // pause other audios if another match is made before the current audio is finished
         function pauseAudio() {
             card.forEach(function(card) {
+            // check audio 
             var currentAudio = firstCard.lastChild;
+            console.log(currentAudio);
             var otherAudios = card.querySelector("audio");
+            console.log(otherAudios);
+            // compares attributes of the current (clicked) audio element (object) and other audio objects
             if(currentAudio !== otherAudios) {
+              // pause any audio element which doesn't match the audio element of the currently selected card (after checking if an audio element even exists)
               if(otherAudios) {
                 otherAudios.pause();
               }
@@ -163,7 +167,7 @@ function gameLogic(e) {
   }
 }
 
-function playAgain() {
+function resetGame() {
   gameOverLay.style.display = "none";
   firstCard = "";
   secondCard = "";
@@ -175,9 +179,7 @@ function playAgain() {
   }
 }
 
-playAgainButton.addEventListener("click", () => {
-  playAgain();
-});
+playAgainButton.addEventListener("click", resetGame);
 
 
 

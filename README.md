@@ -23,5 +23,3 @@ Better understanding of **targeting specific nodes (and their children)** and **
 :arrow_right: how to utilize **setTimeout() method** to call a function after a specified number of miliseconds </br>
 :arrow_right: how to make use of **setAttribute() / removeAttribute() methods** to set a value of an attribute / remove the attribute completely, on the specified element </br>
 :arrow_right: how to utilize **audio HTML element** and its **attributes** (e.g. **autoplay**) and **events** (e.g. **pause**) to embed sound content and manipulate it
-
-**Happy 4th Birthday, Dita! Stay cool, stay curious, stay you!** 😎 💕

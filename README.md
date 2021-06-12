@@ -6,8 +6,6 @@ The game design is inspired by Dita's favorite color (**pink**), favorite cartoo
 
 You can find and play the game [here](https://lara-isak.github.io/pink-pairs/).
 
-![](img/pink-pairs.png)
-
 ### :flower_playing_cards: Game rules
 - Start by flipping over one card
 - If the next card you flip matches, an audio clip, matching the character on the cards, starts playing and cards remain visible
@@ -23,3 +21,5 @@ Better understanding of **targeting specific nodes (and their children)** and **
 :arrow_right: how to utilize **setTimeout() method** to call a function after a specified number of miliseconds </br>
 :arrow_right: how to make use of **setAttribute() / removeAttribute() methods** to set a value of an attribute / remove the attribute completely, on the specified element </br>
 :arrow_right: how to utilize **audio HTML element** and its **attributes** (e.g. **autoplay**) and **events** (e.g. **pause**) to embed sound content and manipulate it
+
+![](img/pink-pairs.png)
